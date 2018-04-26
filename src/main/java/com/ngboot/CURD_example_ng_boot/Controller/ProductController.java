@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ngboot.CURD_example_ng_boot.model.Product;
 import com.ngboot.CURD_example_ng_boot.repository.ProductRepository;
 
-@CrossOrigin(origins= {"http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin(origins= {"http://**"}, maxAge = 4800, allowCredentials = "false")
 @RestController
 public class ProductController {
 
