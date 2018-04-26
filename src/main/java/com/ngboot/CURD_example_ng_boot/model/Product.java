@@ -17,10 +17,6 @@ public class Product {
 	private int price;
 	private int starRating;
 	private String imageUrl;
-
-	
-	
-
 		
 	public Integer getProductId() {
 		return productId;

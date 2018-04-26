@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ngboot.CURD_example_ng_boot.model.Product;
 import com.ngboot.CURD_example_ng_boot.repository.ProductRepository;
 
-@Controller
+
+
+
 @RestController
 public class ProductController {
 
 	@Autowired
 	ProductRepository productRepository;
-
+	
+	
+	@CrossOrigin
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public ArrayList<Product> getProducts() {
 		return (ArrayList<Product>) productRepository.findAll();
@@ -47,13 +51,13 @@ public class ProductController {
 	
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.GET )
 	public void deleteProductById(@PathVariable int id) {
-		 productRepository.delete(id);
+		 productRepository.deleteById(id);
 	}
 	
 	@RequestMapping(value = "/bulkupload", consumes= MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST )
 	public void bulkUpload(@RequestBody ArrayList<Product> products) {
 		Iterable< Product> iProducts = products;
-		productRepository.save(iProducts);
+		productRepository.saveAll(iProducts);
 	}
 
 }
